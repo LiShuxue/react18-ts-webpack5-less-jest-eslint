@@ -54,7 +54,6 @@ module.exports = {
       },
       {
         test: /\.(scss|sass)$/, // 处理scss
-        exclude: /node_modules/,
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
@@ -63,6 +62,22 @@ module.exports = {
             loader: 'sass-loader',
             options: {
               additionalData: `@import "src/styles/index.scss";`,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.less$/, // 处理less
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                javascriptEnabled: true,
+              },
             },
           },
         ],
